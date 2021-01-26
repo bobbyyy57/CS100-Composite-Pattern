@@ -14,7 +14,7 @@ class Mult : public Base{
 	return (object1->evaluate() * object2->evaluate());
     }
 	virtual std::string stringify(){
-	return ( std::to_string(object1->evaluate()) + " * "+ std::to_string(object2->evaluate()));
+	return ("("+ std::to_string(object1->evaluate()) + " * "+ std::to_string(object2->evaluate())+")");
     }
 };
 #endif //__MULT_HPP__

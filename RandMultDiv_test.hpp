@@ -15,7 +15,7 @@ TEST(MultTest, MultEvalNonZero){
 	Op* two = new Op(2);
 	Op* three = new Op(3);
 	Mult* test = new Mult(two, three);
-//	EXPECT_EQ(test->stringify(), "2.000000 * 3.000000");
+	EXPECT_EQ(test->stringify(), "(2.000000 * 3.000000)");
 	EXPECT_EQ(test->evaluate(), 6);
 }
 
@@ -44,13 +44,13 @@ TEST(MultTest, MultEvalBig){
 	Op* big_two = new Op(98);
 	Mult* test = new Mult(big_one, big_two);
 	EXPECT_EQ(test->evaluate(), 3430);
-	EXPECT_EQ(test->stringify(),"35.000000 * 98.000000");
+	EXPECT_EQ(test->stringify(),"(35.000000 * 98.000000)");
 }
 TEST(MultTest, MultEvalDecimals){
 	Base* decimal1 = new Op(1.8);
 	Base* decimal2 = new Op(3.6);
 	Mult* test = new Mult(decimal1, decimal2);
-	EXPECT_EQ(test->stringify(), "1.800000 * 3.600000");
+	EXPECT_EQ(test->stringify(), "(1.800000 * 3.600000)");
 	EXPECT_EQ(test->evaluate(), 6.48);
 }
 //END OF MULT UNIT TEST
@@ -60,7 +60,7 @@ TEST(DivTest, DivEvalWhole){
 	Op* three = new Op(3);
 	Op* one = new Op(1);
 	Div* test = new Div(three, one);
-	EXPECT_EQ(test->stringify(), "3.000000 / 1.000000");
+	EXPECT_EQ(test->stringify(), "(3.000000 / 1.000000)");
 	EXPECT_EQ(test->evaluate(), 3);
 }
 
@@ -76,13 +76,13 @@ TEST(DivTest, DivEvalDecimal){
 	Op* two = new Op(2);
 	Div* test = new Div(three, two);
 	EXPECT_EQ(test->evaluate(), 1.5);
-	EXPECT_EQ(test->stringify(), "3.000000 / 2.000000");
+	EXPECT_EQ(test->stringify(), "(3.000000 / 2.000000)");
 }
 TEST(DivTest, DivEvalInfiniteDecimals){
 	Op* three = new Op(3);
 	Op* one = new Op(1);
 	Div* test = new Div(one, three);
-	EXPECT_EQ(test->stringify(), "1.000000 / 3.000000" );
+	EXPECT_EQ(test->stringify(), "(1.000000 / 3.000000)" );
 	EXPECT_NEAR(test->evaluate(),0.333333, 0.333 );
 }
 TEST(DivTest, DivEvalZero){
@@ -90,5 +90,6 @@ TEST(DivTest, DivEvalZero){
 	Op* zero = new Op(0);
 	Div* test = new Div(one, zero);
 	EXPECT_EQ(isnan(test->evaluate()), true);
+	EXPECT_EQ(test->stringify(), "(1.000000 / 0.000000)");
 }
 #endif//__RAND_MULT_DIV_TEST_HPP__
