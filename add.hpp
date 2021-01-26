@@ -5,18 +5,18 @@
 
 class Add  : public Base {
     private:
-        double val1;
-        double val2;
+        Base* val1;
+        Base* val2;
     public:
-        Add(double num1, double num2) : Base() {
+        Add(Base* num1, Base* num2) : Base() {
                 val1 = num1;
                 val2 = num2;
         }
         virtual double evaluate() {
-                return val1 + val2;
+                return val1->evaluate() + val2->evaluate();
         }
         virtual std::string stringify() {
-                 return "(" +  std::to_string(val1) + "+" +  std::to_string(val2) + ")";
+                return "(" +  std::to_string(val1->evaluate()) + "+" +  std::to_string(val2->evaluate()) + ")";
         }
 };
 
