@@ -24,4 +24,10 @@ TEST(MultTest, MultEvalZero){
 	EXPECT_EQ(test->evaluate(), 0);
 }
 
+TEST(MultTest, MultEvalNeg){
+	Op* neg_one = new Op(-1);
+	Op* three = new Op(3);
+	Mult* test = new Mult(neg_one, three);
+	EXPECT_EQ(test->evaluate(), -3);
+}
 #endif//__RAND_MULT_DIV_TEST_HPP__
