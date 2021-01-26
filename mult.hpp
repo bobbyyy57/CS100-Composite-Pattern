@@ -3,6 +3,7 @@
 
 #include "base.hpp"
 #include <string>
+#include <cmath>
 
 class Mult : public Base{
 	private:
@@ -11,6 +12,9 @@ class Mult : public Base{
     public:
 	Mult(Base* a, Base* b): Base(){object1 = a; object2 = b;}
 	virtual double evaluate(){
+		if(isinf(object1->evaluate() * object2->evaluate())){
+			return std::nan("");
+		}
 	return (object1->evaluate() * object2->evaluate());
     }
 	virtual std::string stringify(){
