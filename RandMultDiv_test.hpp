@@ -7,13 +7,15 @@
 #include "op.hpp"
 #include "rand.hpp"
 #include "mult.hpp"
+#include "div.hpp"
+#include <cmath>
 
-
+//UNIT TEST FOR MULT CLASS
 TEST(MultTest, MultEvalNonZero){
 	Op* two = new Op(2);
 	Op* three = new Op(3);
 	Mult* test = new Mult(two, three);
-//	EXPECT_EQ(test->stringify(), "2.0 * 3.0");
+//	EXPECT_EQ(test->stringify(), "2.000000 * 3.000000");
 	EXPECT_EQ(test->evaluate(), 6);
 }
 
@@ -36,5 +38,43 @@ TEST(MultTest, MultEvalNegPos){
 	Op* neg_three = new Op(-3);
 	Mult* test = new Mult(neg_one, neg_three);
 	EXPECT_EQ(test->evaluate(), 3);
+}
+TEST(MultTest, MultEvalBig){
+	Op* big_one = new Op(35);
+	Op* big_two = new Op(98);
+	Mult* test = new Mult(big_one, big_two);
+	EXPECT_EQ(test->evaluate(), 3430);
+	EXPECT_EQ(test->stringify(),"35.000000 * 98.000000");
+}
+TEST(MultTest, MultEvalDecimals){
+	Base* decimal1 = new Op(1.8);
+	Base* decimal2 = new Op(3.6);
+	Mult* test = new Mult(decimal1, decimal2);
+	EXPECT_EQ(test->stringify(), "1.800000 * 3.600000");
+	EXPECT_EQ(test->evaluate(), 6.48);
+}
+//END OF MULT UNIT TEST
+
+//UNIT TEST FOR DIV CLASS
+TEST(DivTest, DivEvalWhole){
+	Op* three = new Op(3);
+	Op* one = new Op(1);
+	Div* test = new Div(three, one);
+	EXPECT_EQ(test->stringify(), "3.000000 / 1.000000");
+	EXPECT_EQ(test->evaluate(), 3);
+}
+
+TEST(DivTest, DivEvalNeg){
+	Op* neg_one = new Op(-1);
+	Op* three = new Op(3);
+	Div* test = new Div(three, neg_one);
+	EXPECT_EQ(test->evaluate(), -3);
+}
+
+TEST(DivTest, DivEvalDecimal){
+	Op* one = new Op(1);
+	Op* zero = new Op(0);
+	Div* test = new Div(one, zero);
+	EXPECT_EQ(isnan(test->evaluate()), true);
 }
 #endif//__RAND_MULT_DIV_TEST_HPP__
