@@ -8,25 +8,20 @@
 #include "rand.hpp"
 #include "mult.hpp"
 
-TEST(OpTest, MultEvalNonZero){
+
+TEST(MultTest, MultEvalNonZero){
 	Op* two = new Op(2);
 	Op* three = new Op(3);
 	Mult* test = new Mult(two, three);
-	EXPECT_EQ(test->evaluate(), 8);
+//	EXPECT_EQ(test->stringify(), "2.0 * 3.0");
+	EXPECT_EQ(test->evaluate(), 6);
 }
 
-TEST(OpTest, MultEvalZero){
+TEST(MultTest, MultEvalZero){
 	Op* zero = new Op(0);
-	Op* one = new Op(1);
-	Mult* test = new Mult(zero, one);
+	Op* three = new Op(3);
+	Mult* test = new Mult(zero, three);
 	EXPECT_EQ(test->evaluate(), 0);
-}
-
-TEST(OpTest, MultEvalNeg){
-	Op* neg_one = new Op(-1);
-	Op* nine = new Op(9);
-	Mult* test = new Mult(neg_one, nine);
-	EXPECT_EQ(test->evaluate(), 8);
 }
 
 #endif//__RAND_MULT_DIV_TEST_HPP__
