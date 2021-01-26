@@ -46,6 +46,13 @@ TEST(MultTest, MultEvalBig){
 	EXPECT_EQ(test->evaluate(), 3430);
 	EXPECT_EQ(test->stringify(),"(35.000000 * 98.000000)");
 }
+TEST(MultTest, MultEvalInf){
+	Op* big = new Op(9800000000000000000);
+	Op* big2 = new Op(9800000000000000000);
+	Mult* test = new Mult(big, big2);
+	EXPECT_EQ(test->evaluate(), 9.604e+37);
+//	EXPECT_EQ(test->stringify, ())
+}
 TEST(MultTest, MultEvalDecimals){
 	Base* decimal1 = new Op(1.8);
 	Base* decimal2 = new Op(3.6);
