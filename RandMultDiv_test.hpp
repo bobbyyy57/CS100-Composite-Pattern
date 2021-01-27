@@ -10,6 +10,14 @@
 #include "div.hpp"
 #include <cmath>
 
+//UNTI TETS FOR RAND CLASS//
+TEST(RandTest, RandEvalCorrect){
+	Rand* test = new Rand();
+	EXPECT_TRUE((test->evaluate() <=100)&&(test->evaluate()>=0));
+}
+//END OF RAND TEST
+
+
 //UNIT TEST FOR MULT CLASS
 TEST(MultTest, MultEvalNonZero){
 	Op* two = new Op(2);
@@ -99,4 +107,18 @@ TEST(DivTest, DivEvalZero){
 	EXPECT_EQ(isnan(test->evaluate()), true);
 	EXPECT_EQ(test->stringify(), "(1.000000 / 0.000000)");
 }
+//END OF DIV TESTS//
+
+TEST(MultyTest, DivMultEval){
+	Op* one = new Op(1);
+	Op* three = new Op(3);
+	Mult* multy = new Mult(one, three);
+	Div* divy = new Div(multy, three);
+	EXPECT_EQ(divy->evaluate(), 1);
+	EXPECT_EQ(divy->stringify(), "(3.000000 / 3.000000)");
+}
+
+
+
+
 #endif//__RAND_MULT_DIV_TEST_HPP__
