@@ -6,8 +6,13 @@
 #include "op.hpp"
 
 TEST(OpTest, OpEvaluateNonZero) {
-    Op* test = new Op(8);
+    Base* test = new Op(8);
     EXPECT_EQ(test->evaluate(), 8);
+}
+
+TEST(OpTest, OpStringifyNonZero) {
+    Op* test = new Op(8);
+    EXPECT_EQ(test->stringify(),"8.000000");
 }
 
 #endif //__OP_TEST_HPP__
