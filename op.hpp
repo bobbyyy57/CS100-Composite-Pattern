@@ -2,10 +2,9 @@
 #define __OP_HPP__
 
 #include "base.hpp"
-
 class Op : public Base {
     private: 
-	double val;
+	      double val;
     public:
         Op(double value) : Base() { val = value; }
         virtual double evaluate() { return val; }
