@@ -16,7 +16,7 @@ class Sub  : public Base {
                 return val1->evaluate() - val2->evaluate();
         }
         virtual std::string stringify() {
-                return "(" +  std::to_string(val1->evaluate()) + "-" +  std::to_string(val2->evaluate()) + ")";
+                return "(" +  std::to_string(val1->evaluate()) + " - " +  std::to_string(val2->evaluate()) + ")";
         }
 };
 
